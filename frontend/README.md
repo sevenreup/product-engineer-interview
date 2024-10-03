@@ -3,5 +3,4 @@ Mophones is branching into the music business in a fictional world and needs a n
 
 # Tasks
 - Show top 100 albums based on the json feed here: https://itunes.apple.com/us/rss/topalbums/limit=100/json
-- Add interaction to the App: open a details page when clicking an album; go to the Album link
-- Allow the top 100 to be searchable
+

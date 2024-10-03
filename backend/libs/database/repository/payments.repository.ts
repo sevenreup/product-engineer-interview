@@ -4,12 +4,14 @@ import { Model } from 'mongoose';
 import { CreatePaymentsDto } from '../dto/create-payments.dto';
 import { UpdatePaymentsDto } from '../dto/update-payments.dto';
 import { PaymentsSchema } from '../schema/payments.db';
+import { CustomerSchema } from '../schema/customer.db';
 
 @Injectable()
 export class PaymentsRepository {
   constructor(
     @InjectModel(PaymentsSchema.name)
     private readonly paymentsModel: Model<PaymentsSchema>,
+    private readonly customerModel: Model<CustomerSchema>,
   ) {}
 
   async create(createPaymentsDto: CreatePaymentsDto): Promise<PaymentsSchema> {

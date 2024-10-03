@@ -24,6 +24,11 @@ export class PaymentsSchema extends Document {
   })
   customer: CustomerSchema;
 
+  @Prop({
+    default: 0,
+  })
+  version: number;
+
   createdAt: Date;
 
   updatedAt: Date;
