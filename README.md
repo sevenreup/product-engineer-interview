@@ -1,4 +1,7 @@
-# Live Coding Session: NestJS Backend & Next.js Frontend with Tailwind CSS
+# Mophone Product Engineer Role Interivew
+
+## Instructions !!
+Please clone this project to your github profile
 
 ## Overview
 This repository is designed for a live coding session covering both backend (NestJS) development. The session will focus on implementing a feature to reassign a payment from one customer to another. The backend will be built using NestJS, and the frontend will be developed using Next.js with Tailwind CSS and TypeScript.
@@ -31,8 +34,6 @@ This repository is designed for a live coding session covering both backend (Nes
 2. **Customers**
    - `GET /customers` – List all customers.
    - `POST /customers` – Add a new customer.
-   - `PUT /customers/:id` – Update a customer.
-   - `DELETE /customers/:id` – Delete a customer.
 
 3. **Payments**
    - `GET /payments` – List all payments.

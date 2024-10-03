@@ -24,4 +24,12 @@ export class PaymentService {
       throw error;
     }
   }
+
+  async reassign(): Promise<any> {
+    try {
+      // TODO
+    } catch (error) {
+      throw error;
+    }
+  }
 }
