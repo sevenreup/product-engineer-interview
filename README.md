@@ -43,7 +43,7 @@ This repository is designed for a live coding session covering both backend (Nes
 ### Running the Backend
 1. Clone the repository and navigate to the `backend` folder:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/mophones/product-engineer-interview.git
    cd backend
    ```
 
@@ -67,7 +67,7 @@ npm run test
 
 ## Final Notes
 
-The following are the criterias for judgment
+The following are the criteria for judgment
 1. Database atomocity
 2. Concurrency
 
