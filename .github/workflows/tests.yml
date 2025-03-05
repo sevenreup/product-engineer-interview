@@ -1,23 +1,46 @@
 name: Test Results
 
 on:
-  pull_request:
   push:
+    branches: [main]
+  pull_request:
 
 jobs:
-  build-test:
-    name: Build & Test
+  test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - run: cd ./backend
-      - run: npm i
-      - run: npm test
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+          cache-dependency-path: "./backend/package-lock.json"
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Run Jest Tests
+        working-directory: ./backend
+        run: npm run test:ci
+        env:
+          JEST_JUNIT_OUTPUT_DIR: ../test-results
+          JEST_JUNIT_OUTPUT_NAME: junit.xml
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: backend-test-results
+          path: ./test-results/junit.xml
 
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: JEST Tests
-          path: backend/junit.xml
+          name: Backend Jest Test Report
+          path: ./test-results/junit.xml
           reporter: jest-junit
