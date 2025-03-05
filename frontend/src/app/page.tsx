@@ -1,32 +1,34 @@
-"use client";
-
 import { fetchTopAlbums } from "@/libs/api/itunes";
-import { Album } from "@/types";
-import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 
-export default function Home() {
-  const { data, isLoading, isError } = useQuery<{ feed: { entry: Album[] } }>({
-    queryKey: ["topAlbums"],
-    queryFn: fetchTopAlbums,
-  });
-
-  if (isLoading) {
-    return <div className="text-center py-10">Loading top albums...</div>;
-  }
-
-  if (isError) {
-    return (
-      <div className="text-center py-10 text-red-500">Error loading albums</div>
-    );
-  }
-
-  const albums = data?.feed.entry || [];
+export default async function Home() {
+  const albums = await fetchTopAlbums();
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      {albums.map((album, index) => (
-        <div key={index}>{album["im:name"].label}</div>
-      ))}
+    <div className="container mx-auto px-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">Mophones Music</h1>
+      <div className="flex flex-col gap-4 mb-6">
+        {albums.map((album) => (
+          <div
+            key={album.id}
+            className="bg-white rounded-lg shadow-md p-4 flex items-center border"
+          >
+            <div className="w-20 h-20 mr-4">
+              <Image
+                src={album.images[2].href}
+                alt={album.name}
+                height={album.images[2].height}
+                width={album.images[2].height}
+                className="w-full h-full object-cover rounded"
+              />
+            </div>
+            <div className="flex-grow">
+              <h2 className="font-semibold text-lg truncate">{album.name}</h2>
+              <p className="text-gray-600 truncate">{album.artist}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
