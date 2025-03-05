@@ -8,7 +8,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    JwtModule.register({ secret: 'hard!to-guess_secret' }),
+    JwtModule.register({ secret: 'hard!to-guess_secret', global: true }),
     DatabaseModule,
   ],
   controllers: [UserController, AuthController],

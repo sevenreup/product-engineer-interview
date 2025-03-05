@@ -11,6 +11,7 @@ export class PaymentsRepository {
   constructor(
     @InjectModel(PaymentsSchema.name)
     private readonly paymentsModel: Model<PaymentsSchema>,
+    @InjectModel(CustomerSchema.name)
     private readonly customerModel: Model<CustomerSchema>,
   ) {}
 

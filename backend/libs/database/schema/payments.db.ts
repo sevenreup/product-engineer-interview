@@ -20,7 +20,6 @@ export class PaymentsSchema extends Document {
 
   @Prop({
     type: { type: MongooseSchema.Types.ObjectId, ref: CustomerSchema.name },
-    required: false,
   })
   customer: CustomerSchema;
 
