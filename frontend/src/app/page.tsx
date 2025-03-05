@@ -11,7 +11,7 @@ export default async function Home() {
         {albums.map((album) => (
           <div
             key={album.id}
-            className="bg-white rounded-lg shadow-md p-4 flex items-center border"
+            className="bg-muted text-foreground shadow rounded-lg p-4 flex items-center"
           >
             <div className="w-20 h-20 mr-4">
               <Image
