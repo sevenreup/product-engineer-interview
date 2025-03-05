@@ -11,8 +11,6 @@ export class PaymentsRepository {
   constructor(
     @InjectModel(PaymentsSchema.name)
     private readonly paymentsModel: Model<PaymentsSchema>,
-    @InjectModel(CustomerSchema.name)
-    private readonly customerModel: Model<CustomerSchema>,
   ) {}
 
   async create(createPaymentsDto: CreatePaymentsDto): Promise<PaymentsSchema> {
@@ -31,6 +29,10 @@ export class PaymentsRepository {
       .exec();
   }
 
+  async findById(id: string): Promise<PaymentsSchema | null> {
+    return this.paymentsModel.findById(id).exec();
+  }
+
   async update(
     referenceId: string,
     updatePaymentsDto: UpdatePaymentsDto,
@@ -38,6 +40,19 @@ export class PaymentsRepository {
     return this.paymentsModel
       .findOneAndUpdate({ referenceId }, updatePaymentsDto, { new: true })
       .populate('customer')
+      .exec();
+  }
+
+  async updateCustomer(
+    paymentId: string,
+    newCustomerId: string,
+  ): Promise<PaymentsSchema | null> {
+    return this.paymentsModel
+      .findByIdAndUpdate(
+        paymentId,
+        { customerId: newCustomerId },
+        { new: true },
+      )
       .exec();
   }
 
